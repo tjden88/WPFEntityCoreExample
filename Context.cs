@@ -22,6 +22,7 @@ namespace WPFEntityCoreExample
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=wpfENtityTestDB;Trusted_Connection=True;");
+            //optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.LogTo(message => Debug.WriteLine(message), Microsoft.Extensions.Logging.LogLevel.Information);
         }
 

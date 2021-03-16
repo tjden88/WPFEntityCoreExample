@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -54,12 +55,14 @@ namespace WPFEntityCoreExample
             using Context db = new();
             Catsource = new(db.Categories);
             dataGrid.ItemsSource = Catsource;
+            // TODO: dataGrid.ItemsSource = db.Categories.Local.ToObservableCollection();
         }
 
         private void Button4_Click(object sender, RoutedEventArgs e)
         {
             using Context db = new();
-            ELsource = new(db.Elements);
+            ELsource = new(db.Elements.Include(c => c.Category).AsNoTracking()); // Явная подгрузка и без кеширования
+            //ELsource = new(db.Elements); // Ленивая подгрузка глючная жопа
             dataGrid.ItemsSource = ELsource;
         }
 
@@ -77,6 +80,13 @@ namespace WPFEntityCoreExample
             using Context db = new();
             db.Categories.UpdateRange(Catsource);
             db.SaveChanges();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            //dataGrid.ItemsSource = CatalogView.SelectAll();
+            using Context db = new();
+            dataGrid.ItemsSource = Element.ElementsByCategories(db, "%Основное%").ToList();
         }
     }
 }

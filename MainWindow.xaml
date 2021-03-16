@@ -32,7 +32,8 @@
                     <Button Content="Удалить данные" Click="Button3_Click"/>
                     <Button Content="Вывести в таблицу" Click="Button2_Click"/>
                     <Button Content="Вывести Элементы в таблицу" Click="Button4_Click"/>
-                    <Button Content="Изменить?" Click="Button_Click_1"/>
+                    <Button Content="Изменить" Click="Button_Click_1"/>
+                    <Button Content="CatalogView" Click="Button_Click_2"/>
                 </StackPanel>
                 <DataGrid Margin="5" x:Name="dataGrid" Grid.Column="1" AutoGenerateColumns="True" />
             </Grid>
