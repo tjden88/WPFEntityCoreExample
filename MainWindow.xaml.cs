@@ -84,9 +84,12 @@ namespace WPFEntityCoreExample
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            //dataGrid.ItemsSource = CatalogView.SelectAll();
+            //dataGrid.ItemsSource = CatalogView.SelectAll(); // Не тру Вью
+
             using Context db = new();
-            dataGrid.ItemsSource = Element.ElementsByCategories(db, "%Основное%").ToList();
+            //dataGrid.ItemsSource = Element.ElementsByCategories(db, "%Основное%").ToList(); // Из хранимого запроса
+
+            dataGrid.ItemsSource = db.CatalogTrueViews.ToList(); // тру Вью
         }
     }
 }

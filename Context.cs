@@ -13,6 +13,7 @@ namespace WPFEntityCoreExample
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<Element> Elements { get; set; }
+        public DbSet<CatalogTrueView> CatalogTrueViews { get; set; }
 
         public Context()
         {
@@ -29,6 +30,13 @@ namespace WPFEntityCoreExample
         protected override void OnModelCreating(ModelBuilder modelBuilder) // FlueNet API there
         {
             modelBuilder.Entity<Category>().HasData(new Category { Id = 1, Name = "StartData", Description = "StartDescript" }); // Начальные данные
+
+
+            modelBuilder.Entity<CatalogTrueView>((tw =>
+            {
+                tw.HasNoKey();
+                tw.ToView("CatalogView");
+            }));
         }
     }
 }
