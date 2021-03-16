@@ -34,6 +34,7 @@
                     <Button Content="Вывести Элементы в таблицу" Click="Button4_Click"/>
                     <Button Content="Изменить" Click="Button_Click_1"/>
                     <Button Content="CatalogView" Click="Button_Click_2"/>
+                    <Button Content="Привязать к списку окна" Click="Button_Click_3"/>
                 </StackPanel>
                 <DataGrid Margin="5" x:Name="dataGrid" Grid.Column="1" AutoGenerateColumns="True" />
             </Grid>
